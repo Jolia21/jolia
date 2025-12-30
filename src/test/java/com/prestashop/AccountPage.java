@@ -21,7 +21,7 @@ public class AccountPage {
 
   public void signOut() {
     frame().locator("a.logout, div.user-info a:has-text('Sign out')").click();
-    // Back to login page: "Sign in" should appear again
+ // Kthehu tek faqja e hyrje  , "Sign in" duhet të shfaqet perseri
     assertThat(frame().locator("div.user-info a:has-text('Sign in')")).isVisible();
   }
 }

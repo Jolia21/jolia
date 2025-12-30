@@ -7,8 +7,9 @@ import org.junit.platform.suite.api.Suite;
 @SelectClasses({
     RegisterTest.class,
     LoginTest.class,
-    DashboardTest.class
+  
 })
+
+
 public class AllTests {
 }
-

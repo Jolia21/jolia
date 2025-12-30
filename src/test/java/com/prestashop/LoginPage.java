@@ -25,7 +25,7 @@ public class LoginPage {
 	  if (password == null || password.isBlank())
 	    throw new IllegalArgumentException("Login password is null/blank. Test data not set.");
 
-	  // Make sure we are really on the login form inside the iframe
+	  
 	  shop.locator("form#login-form").waitFor();
 
 	  shop.locator("form#login-form #field-email").click();
@@ -34,7 +34,7 @@ public class LoginPage {
 	  shop.locator("form#login-form #field-password").click();
 	  shop.locator("form#login-form #field-password").fill(password);
 
-	  // Optional: verify the value is actually in the box (great for debugging)
+	  
 	  String typed = shop.locator("form#login-form #field-email").inputValue();
 	  if (!email.equals(typed)) throw new IllegalStateException("Email did not get typed. Got: " + typed);
 

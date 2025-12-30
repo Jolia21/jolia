@@ -8,23 +8,23 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class RegisterPage {
   private final Frame shop;
 
-  // IMPORTANT: scope everything to the register form
+  
   private final Locator customerForm;
 
   public RegisterPage(Frame shop) {
     this.shop = shop;
-    // PrestaShop register form is usually #customer-form
+   
     this.customerForm = shop.locator("form#customer-form");
   }
 
-  // ---------- Locators (scoped) ----------
+  
   private Locator headingH1() { return shop.locator("h1"); }
 
   private Locator genderMr() { return customerForm.locator("input[name='id_gender'][value='1']"); }
   private Locator firstName() { return customerForm.locator("input[name='firstname']"); }
   private Locator lastName()  { return customerForm.locator("input[name='lastname']"); }
 
-  // FIX: these were duplicated on the page → now scoped to #customer-form
+  
   private Locator email()     { return customerForm.locator("input[name='email']"); }
   private Locator password()  { return customerForm.locator("input[name='password']"); }
 
@@ -34,7 +34,7 @@ public class RegisterPage {
   private Locator signOut() { return shop.locator("a.logout, div.user-info a:has-text('Sign out')"); }
   private Locator signIn()  { return shop.locator("div.user-info a:has-text('Sign in')"); }
 
-  // ---------- Assertions ----------
+  
   public void assertRegisterTitleOrHeading() {
     headingH1().waitFor();
     String h = headingH1().innerText().toLowerCase();
@@ -48,17 +48,17 @@ public class RegisterPage {
     assertTrue(firstName().isVisible(), "Register form not opened (firstname not visible).");
   }
 
-//inside RegisterPage class (scoped to form#customer-form as I showed before)
+
 
 private Locator termsCheckbox() {
- // "I agree to the terms and conditions..."
+
  return customerForm.locator(
      "label:has-text('I agree to the terms') input[type='checkbox'], input[name='psgdpr']"
  ).first();
 }
 
 private Locator customerPrivacyCheckbox() {
- // "Customer data privacy"
+
  return customerForm.locator(
      "label:has-text('Customer data privacy') input[type='checkbox'], input[name='customer_privacy']"
  ).first();
@@ -67,7 +67,7 @@ private Locator customerPrivacyCheckbox() {
 private void checkIfVisible(Locator checkbox) {
  if (checkbox.count() > 0) {
    checkbox.scrollIntoViewIfNeeded();
-   // Using setChecked is safer than click/check for some themes
+   
    checkbox.setChecked(true);
  }
 }
@@ -80,7 +80,7 @@ public void fillMandatoryAndSubmit(String fName, String lName, String mail, Stri
  email().fill(mail);
  password().fill(pass);
 
- // ✅ REQUIRED checkboxes (this fixes your popup)
+
  checkIfVisible(termsCheckbox());
  checkIfVisible(customerPrivacyCheckbox());
 

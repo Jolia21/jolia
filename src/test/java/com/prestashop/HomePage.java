@@ -27,7 +27,7 @@ public class HomePage {
   }
 
   public void waitShopReady(Frame shop) {
-    // ✅ me e fortë se vetëm "#header"
+    
     shop.waitForLoadState();
     shop.waitForSelector(
         "body",
@@ -38,12 +38,12 @@ public class HomePage {
   }
 
   public void closePopupsIfAny(Frame shop) {
-    // ✅ Popup mund të dalë ose jo - ndaj i kontrollojmë para klikimit
+    
     if (shop.querySelector("button:has-text('Close')") != null) {
       shop.click("button:has-text('Close')");
     }
 
-    // ✅ disa herë del edhe ky lloj popup
+    
     if (shop.querySelector("#popup-close") != null) {
       shop.click("#popup-close");
     }
